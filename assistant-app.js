@@ -620,9 +620,10 @@ class AssistantApp {
       const permission = permissions[i];
       if (permission !== this.SupportedPermissions.NAME &&
         permission !== this.SupportedPermissions.DEVICE_PRECISE_LOCATION &&
-        permission !== this.SupportedPermissions.DEVICE_COARSE_LOCATION) {
+        permission !== this.SupportedPermissions.DEVICE_COARSE_LOCATION &&
+        permission !== this.SupportedPermissions.EMAIL) {
         this.handleError_('Assistant permission must be one of ' +
-          '[NAME, DEVICE_PRECISE_LOCATION, DEVICE_COARSE_LOCATION]');
+          '[NAME, EMAIL, DEVICE_PRECISE_LOCATION, DEVICE_COARSE_LOCATION]');
         return null;
       }
     }
@@ -2468,6 +2469,12 @@ AssistantApp.prototype.SupportedPermissions = {
    *     UserProfile object}
    */
   NAME: 'NAME',
+  /**
+   * The user's email as defined in the
+   * {@link https://developers.google.com/actions/reference/conversation#UserProfile|
+   *     UserProfile object}
+   */
+  EMAIL: 'EMAIL',
   /**
    * The location of the user's current device, as defined in the
    * {@link https://developers.google.com/actions/reference/conversation#Location|Location object}.
