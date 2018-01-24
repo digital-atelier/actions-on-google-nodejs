@@ -1553,6 +1553,10 @@ class AssistantApp {
       return null;
     } else if (argument.textValue) {
       return argument.textValue;
+    } else if (argument.intValue) {
+      return argument.intValue;
+    } else if (argument.boolValue) {
+      return argument.boolValue;
     }
     if (!this.isNotApiVersionOne_()) {
       return transformToSnakeCase(argument);
@@ -1889,7 +1893,7 @@ class AssistantApp {
   isFinalReprompt () {
     debug('isFinalReprompt');
     const finalReprompt = this.getArgumentCommon(this.BuiltInArgNames.IS_FINAL_REPROMPT);
-    return finalReprompt === '1';
+    return finalReprompt === true;
   }
 
   /**
