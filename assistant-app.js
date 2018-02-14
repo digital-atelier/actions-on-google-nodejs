@@ -1853,9 +1853,9 @@ class AssistantApp {
    */
   getRepromptCount () {
     debug('getRepromptCount');
-    const repromptArg = this.getArgumentCommon(this.BuiltInArgNames.REPROMPT_COUNT);
-    if (repromptArg && repromptArg.intValue) {
-      return parseInt(repromptArg.intValue, 10);
+    const reprompt = this.getArgumentCommon(this.BuiltInArgNames.REPROMPT_COUNT);
+    if (reprompt !== null) {
+      return parseInt(reprompt, 10);
     }
     return null;
   }
