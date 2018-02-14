@@ -2153,11 +2153,11 @@ describe('ActionsSdkApp', function () {
         'arguments': [
           {
             'name': 'REPROMPT_COUNT',
-            'textValue': '1'
+            'intValue': '1'
           },
           {
             'name': 'IS_FINAL_REPROMPT',
-            'textValue': '0'
+            'boolValue': false
           }
         ]
       }];
@@ -2190,11 +2190,11 @@ describe('ActionsSdkApp', function () {
         'arguments': [
           {
             'name': 'REPROMPT_COUNT',
-            'textValue': '2'
+            'intValue': '2'
           },
           {
             'name': 'IS_FINAL_REPROMPT',
-            'textValue': '1'
+            'boolValue': true
           }
         ]
       }];
@@ -2212,11 +2212,11 @@ describe('ActionsSdkApp', function () {
         'arguments': [
           {
             'name': 'REPROMPT_COUNT',
-            'textValue': '0'
+            'intValue': '0'
           },
           {
             'name': 'IS_FINAL_REPROMPT',
-            'textValue': '0'
+            'boolValue': false
           }
         ]
       }];
@@ -2799,12 +2799,14 @@ describe('ActionsSdkApp', function () {
 
     before(() => {
       require('../utils/auth').googleAuthClient = {
-        verifyIdToken: (argOne, projectId, callback) => {
-          if (projectId === validProjectId) {
-            callback(null, sampleToken);
-          } else {
-            callback(errorMsg, null);
-          }
+        verifyIdToken: (options) => {
+          return new Promise((resolve, reject) => {
+            if (options.audience === validProjectId) {
+              resolve(sampleToken);
+            } else {
+              reject(errorMsg);
+            }
+          });
         }
       };
     });
